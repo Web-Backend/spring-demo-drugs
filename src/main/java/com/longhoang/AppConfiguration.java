@@ -1,5 +1,7 @@
 package com.longhoang;
 
+import com.longhoang.services.DrugService;
+import com.longhoang.services.impl.DrugServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -140,5 +142,8 @@ public class AppConfiguration extends WebMvcConfigurerAdapter implements Applica
         return localeResolver;
     }
 
-
+    @Bean
+    public DrugService drugService() {
+        return new DrugServiceImpl();
+    }
 }
