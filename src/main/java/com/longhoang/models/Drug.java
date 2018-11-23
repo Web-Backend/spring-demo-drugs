@@ -77,10 +77,13 @@ public class Drug implements Validator {
         if (name.length() < 5 || name.length() > 30) {
             errors.rejectValue("drug", "index.name.length");
         }
-        double price = drug.getPrice();
+        String price = String.valueOf(drug.getPrice());
         ValidationUtils.rejectIfEmpty(errors, "drug", "index.price.empty");
-        if (price < 5) {
+        if (Double.parseDouble(price) < 5) {
             errors.rejectValue("drug", "index.price");
+        }
+        if (!price.matches("^[0-9]*$")) {
+            errors.rejectValue("drug", "index.price.matches");
         }
     }
 }
