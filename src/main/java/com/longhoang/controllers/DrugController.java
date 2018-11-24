@@ -69,4 +69,8 @@ public class DrugController {
         return modelAndView;
     }
 
+    @GetMapping("/drugs/detail/{id}")
+    public ModelAndView viewDetail(@PathVariable Long id) {
+        return new ModelAndView("detail", "drug", drugService.findById(id));
+    }
 }
