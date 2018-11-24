@@ -1,11 +1,27 @@
 <!DOCTYPE html>
-<html lang="en"
-<html xmlns:th="http://www.thymeleaf.org">>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Hello high place</title>
 </head>
 <body>
-test
+<h1 style="color: yellowgreen">Drug list</h1>
+<a href="/create-drug" style="color: red; text-decoration: none">Create new drug</a>
+<table border="1px">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    <tr th:each="drug : ${drugs}">
+        <td th:text="${drug.name}"></td>
+        <td th:text="${drug.price}">$</td>
+        <td><a th:href="@{/drugs/edit/__${drug.id}__ }">Edit</a></td>
+        <td><a th:href="@{/drugs/edit/__${drug.id}__ }">Delete</a></td>
+        <td><a th:href="@{/drugs/view/__${drug.id}__ }">Delete</a></td>
+    </tr>
+</table>
 </body>
 </html>
