@@ -55,4 +55,18 @@ public class DrugController {
         modelAndView.addObject("message", "Updated successfully");
         return modelAndView;
     }
+
+    @GetMapping("/drugs/delete/{id}")
+    public ModelAndView deleteDrugForm(@PathVariable Long id) {
+        return new ModelAndView("delete", "drug", drugService.findById(id));
+    }
+
+    @PostMapping("/drugs/delete/")
+    public ModelAndView deleteDrug(@ModelAttribute Drug drug) {
+        drugService.remove(drug.getId());
+        ModelAndView modelAndView = new ModelAndView("delete", "drug", drug);
+        modelAndView.addObject("message", "Deleted successfully");
+        return modelAndView;
+    }
+
 }
