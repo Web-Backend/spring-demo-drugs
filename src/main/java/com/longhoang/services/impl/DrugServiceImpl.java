@@ -3,11 +3,14 @@ package com.longhoang.services.impl;
 import com.longhoang.models.Drug;
 import com.longhoang.repository.DrugRepository;
 import com.longhoang.services.DrugService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public class DrugServiceImpl implements DrugService {
+    @Autowired
     private DrugRepository drugRepository;
+
     @Override
     public Page<Drug> findAll(Pageable pageable) {
         return drugRepository.findAll(pageable);
