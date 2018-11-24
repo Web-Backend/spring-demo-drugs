@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>High high high</title>
+</head>
+<body>
+<a href="/drugs" style="color: chocolate;">Back to Drug list</a>
+<th:block th:if="${message}">
+    <h1 style="color: crimson" th:text="${message}"></h1>
+</th:block>
+<form th:action="@{/drugs/edit/}" method="post" th:object="${drug}">
+    <input type="hidden" th:field="*{id}">
+    <table>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" th:field="*{name}"></td>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td><input type="text" th:field="*{price}"></td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td><input type="text" th:field="*{description}"></td>
+        </tr>
+        <td><button type="submit">Update</button></td>
+    </table>
+</form>
+</body>
+</html>
