@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>High high high</title>
+</head>
+<body>
+<a href="/drugs" style="color: chocolate;">Back to Drug list</a>
+<th:block th:if="${message}">
+    <h1 style="color: crimson" th:text="${message}"></h1>
+</th:block>
+<form th:action="@{/create-drug}" method="post" th:object="${drug}">
+    <table>
+        <tr>
+            <td>Name</td>
+            <td><input type="text" th:field="*{name}"></td>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</td>
+        </tr>
+        <tr>
+            <td>Price</td>
+            <td><input type="text" th:field="*{price}"></td>
+            <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Price Error</td>
+        </tr>
+        <tr>
+            <td>Description</td>
+            <td><input type="text" th:field="*{description}"></td>
+        </tr>
+        <tr>
+            <td><button type="submit" th:value="Submit">Submit</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
