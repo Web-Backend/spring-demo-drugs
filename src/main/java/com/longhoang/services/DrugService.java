@@ -12,4 +12,6 @@ public interface DrugService {
     void save(Drug drug);
 
     void remove(Long id);
+
+    Page<Drug> findAllByNameContaining(String name, Pageable pageable);
 }

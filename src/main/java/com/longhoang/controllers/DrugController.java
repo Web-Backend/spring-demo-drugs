@@ -8,11 +8,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Optional;
 
 @Controller
 public class DrugController {
@@ -20,8 +19,13 @@ public class DrugController {
     private DrugService drugService;
 
     @GetMapping("/drugs")
-    public ModelAndView listDrug(@PageableDefault(value = 5)Pageable pageable) {
-        Page<Drug> drugs = drugService.findAll(pageable);
+    public ModelAndView listDrug(@PageableDefault(value = 5)Pageable pageable, @RequestParam Optional<String> nameSearch) {
+        Page<Drug> drugs;
+        if (nameSearch.isPresent()) {
+            drugs = drugService.findAllByNameContaining(nameSearch.get(), pageable);
+        } else {
+            drugs = drugService.findAll(pageable);
+        }
         return new ModelAndView("list", "drugs", drugs);
     }
 

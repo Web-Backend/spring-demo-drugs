@@ -30,4 +30,9 @@ public class DrugServiceImpl implements DrugService {
     public void remove(Long id) {
         drugRepository.delete(id);
     }
+
+    @Override
+    public Page<Drug> findAllByNameContaining(String name, Pageable pageable) {
+        return drugRepository.findAllByNameContaining(name, pageable);
+    }
 }
