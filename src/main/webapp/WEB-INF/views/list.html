@@ -13,14 +13,14 @@
         <th>Price</th>
         <th>Edit</th>
         <th>Delete</th>
-        <th>View</th>
+        <th>Detail</th>
     </tr>
     <tr th:each="drug : ${drugs}">
         <td th:text="${drug.name}"></td>
         <td th:text="${drug.price}">$</td>
         <td><a th:href="@{/drugs/edit/__${drug.id}__ }">Edit</a></td>
         <td><a th:href="@{/drugs/delete/__${drug.id}__ }">Delete</a></td>
-        <td><a th:href="@{/drugs/view/__${drug.id}__ }">View</a></td>
+        <td><a th:href="@{/drugs/detail/__${drug.id}__ }">Detail</a></td>
     </tr>
 </table>
 </body>
