@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello high place</title>
+</head>
+<body>
+<a href="/drugs" style="color: chocolate;">Back to Drug list</a>
+<table border="1px">
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td th:text="${drug.name}"></td>
+        <td th:text="${drug.price}"> $</td>
+        <td th:text="${drug.description}"></td>
+    </tr>
+</table>
+</body>
+</html>
