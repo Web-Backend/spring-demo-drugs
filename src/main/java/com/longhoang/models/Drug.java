@@ -73,17 +73,17 @@ public class Drug implements Validator {
     public void validate(Object target, Errors errors) {
         Drug drug = (Drug) target;
         String name = drug.getName();
-        ValidationUtils.rejectIfEmpty(errors, "drug", "index.name.empty");
+        ValidationUtils.rejectIfEmpty(errors, "name", "index.name.empty");
         if (name.length() < 5 || name.length() > 30) {
-            errors.rejectValue("drug", "index.name.length");
+            errors.rejectValue("name", "index.name.length");
         }
         String price = String.valueOf(drug.getPrice());
-        ValidationUtils.rejectIfEmpty(errors, "drug", "index.price.empty");
+        ValidationUtils.rejectIfEmpty(errors, "price", "index.price.empty");
         if (Double.parseDouble(price) < 5) {
-            errors.rejectValue("drug", "index.price");
+            errors.rejectValue("price", "index.price");
         }
-        if (!price.matches("^[0-9]*$")) {
-            errors.rejectValue("drug", "index.price.matches");
+        if (!price.matches("^[0-9\\.]*$")) {
+            errors.rejectValue("price", "index.price.matches");
         }
     }
 }
