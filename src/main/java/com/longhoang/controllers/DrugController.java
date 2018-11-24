@@ -10,8 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -31,19 +31,28 @@ public class DrugController {
     }
 
     @PostMapping("/create-drug")
-    public ModelAndView saveDrug(@ModelAttribute("drug") Drug drug, BindingResult bindingResult, @RequestParam("name") String name,
-                                 @RequestParam("price") double price, @RequestParam("description") String description) {
+    public ModelAndView saveDrug(@ModelAttribute("drug") Drug drug, BindingResult bindingResult) {
         drug.validate(drug, bindingResult);
         if (bindingResult.hasFieldErrors()) {
             return new ModelAndView("create");
         } else {
             drugService.save(drug);
             ModelAndView modelAndView = new ModelAndView("create", "drug", new Drug());
-            drug.setName(name);
-            drug.setPrice(price);
-            drug.setDescription(description);
             modelAndView.addObject("message", "Created successfully");
             return modelAndView;
         }
+    }
+
+    @GetMapping("/drugs/edit/{id}")
+    public ModelAndView editDrugForm(@PathVariable("id") Long id) {
+        return new ModelAndView("edit", "drug", drugService.findById(id));
+    }
+
+    @PostMapping("/drugs/edit/")
+    public ModelAndView updateDrug(@ModelAttribute("drug") Drug drug) {
+        drugService.save(drug);
+        ModelAndView modelAndView = new ModelAndView("edit", "drug", drug);
+        modelAndView.addObject("message", "Updated successfully");
+        return modelAndView;
     }
 }

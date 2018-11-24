@@ -19,8 +19,8 @@
         <td th:text="${drug.name}"></td>
         <td th:text="${drug.price}">$</td>
         <td><a th:href="@{/drugs/edit/__${drug.id}__ }">Edit</a></td>
-        <td><a th:href="@{/drugs/edit/__${drug.id}__ }">Delete</a></td>
-        <td><a th:href="@{/drugs/view/__${drug.id}__ }">Delete</a></td>
+        <td><a th:href="@{/drugs/delete/__${drug.id}__ }">Delete</a></td>
+        <td><a th:href="@{/drugs/view/__${drug.id}__ }">View</a></td>
     </tr>
 </table>
 </body>
